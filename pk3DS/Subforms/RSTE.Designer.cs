@@ -206,6 +206,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.L_Text2 = new System.Windows.Forms.Label();
             this.TB_Text2 = new System.Windows.Forms.TextBox();
+            this.B_DB = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -2179,11 +2180,22 @@
             this.TB_Text2.Size = new System.Drawing.Size(511, 20);
             this.TB_Text2.TabIndex = 439;
             // 
+            // B_DB
+            // 
+            this.B_DB.Location = new System.Drawing.Point(293, 4);
+            this.B_DB.Name = "B_DB";
+            this.B_DB.Size = new System.Drawing.Size(85, 23);
+            this.B_DB.TabIndex = 442;
+            this.B_DB.Text = "Double Battles";
+            this.B_DB.UseVisualStyleBackColor = true;
+            this.B_DB.Click += new System.EventHandler(this.B_DB_Click);
+            // 
             // RSTE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 256);
+            this.Controls.Add(this.B_DB);
             this.Controls.Add(this.L_Text2);
             this.Controls.Add(this.TB_Text2);
             this.Controls.Add(this.label4);
@@ -2411,5 +2423,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label L_Text2;
         private System.Windows.Forms.TextBox TB_Text2;
+        private System.Windows.Forms.Button B_DB;
     }
 }

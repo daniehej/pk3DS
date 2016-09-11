@@ -325,6 +325,7 @@ namespace pk3DS
             checkBox_Moves.Checked = tr.Moves;
             CB_Battle_Type.SelectedIndex = tr.BattleType;
             CB_numPokemon.SelectedIndex = tr.NumPokemon;
+
             CB_Item_1.SelectedIndex = tr.Items[0];
             CB_Item_2.SelectedIndex = tr.Items[1];
             CB_Item_3.SelectedIndex = tr.Items[2];
@@ -372,7 +373,7 @@ namespace pk3DS
             tr.Class = CB_Trainer_Class.SelectedIndex;
             tr.BattleType = (byte)CB_Battle_Type.SelectedIndex;
             tr.NumPokemon = (byte)CB_numPokemon.SelectedIndex;
-            if (tr.NumPokemon == 0) 
+            if (tr.NumPokemon < 1) 
                 tr.NumPokemon = 1; // No empty teams!
             tr.Items[0] = (ushort)CB_Item_1.SelectedIndex;
             tr.Items[1] = (ushort)CB_Item_2.SelectedIndex;
@@ -547,6 +548,37 @@ namespace pk3DS
             new TrainerRand().ShowDialog(); // Open Randomizer Config to get config vals
             if (rDoRand)
                 Randomize();
+        }
+        private void B_DB_Click(object sender, EventArgs e) //code is the same as the randomizer, only it doesn't randomize, but instead sets all battles to double battles
+        {
+            var confirmResult = MessageBox.Show("This will turn every battle except the very first into a double battle. This means you will have to have at least 2 healthy Pokémon with you to any trainer battle or the game will crash." + Environment.NewLine + "Remember to save often." + Environment.NewLine + Environment.NewLine + "Are you sure you want to continue?",
+                                     "Do you want to continue?",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                for (int i = 1; i < CB_TrainerID.Items.Count; i++)
+                {
+                    CB_TrainerID.SelectedIndex = i;
+                    CB_Battle_Type.SelectedIndex = 1;
+                    if (CB_numPokemon.SelectedIndex < 2)
+                    {
+                        if (i != 137)
+                        {
+                            CB_numPokemon.SelectedIndex = 2;
+                            trpk_pkm[1].SelectedIndex = 132; //sets generated Pokemon to Ditto
+                            trpk_lvl[1].SelectedIndex = 1; //sets Ditto level to 1
+                            trpk_m1[1].SelectedIndex = 144; //should set move to transform
+                        }
+
+
+                    }
+
+                }
+                CB_TrainerID.SelectedIndex = 1;
+                Util.Alert("Finished!");
+            }
+
+            
         }
         private void Randomize()
         {
